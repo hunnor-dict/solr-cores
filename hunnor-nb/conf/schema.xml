@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema name="hunnor-nb" version="1.6">
+
+	<field name="_version_" type="long" indexed="true" stored="true"/>
+	<field name="id" type="long" indexed="true" stored="true" required="true" multiValued="false"/>
+
+	<field name="status" type="int" indexed="true" stored="true" required="false" multiValued="false"/>
+
+	<field name="roots" type="textFolded" indexed="true" stored="true" required="false" multiValued="true"/>
+	<field name="spellings" type="text" indexed="true" stored="true" required="false" multiValued="true"/>
+	<field name="sort" type="stringSortedNo" indexed="true" stored="true" required="false" multiValued="false"/>
+	<field name="forms" type="textFolded" indexed="true" stored="true" required="false" multiValued="true"/>
+	<field name="par" type="string" indexed="true" stored="true" required="false" multiValued="true"/>
+
+	<field name="trans" type="textHuFolded" indexed="true" stored="true" required="false" multiValued="true"/>
+	<field name="eg" type="textFolded" indexed="true" stored="true" required="false" multiValued="true"/>
+	<field name="egTrans" type="textHuFolded" indexed="true" stored="true" required="false" multiValued="true"/>
+
+	<field name="html" type="text" indexed="true" stored="true" required="true" multiValued="false"/>
+
+	<copyField source="roots" dest="spellings"/>
+
+	<uniqueKey>id</uniqueKey>
+
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../../field-types.xml"/>
+
+</schema>

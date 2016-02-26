@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<types>
+
+	<!-- Boolean -->
+	<fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+
+	<!-- Numeric -->
+	<fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+	<fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+
+	<!-- String -->
+	<fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
+
+	<!-- Sort -->
+	<fieldType name="stringSortedHu" class="solr.ICUCollationField" locale="hu" strength="primary"/>
+	<fieldType name="stringSortedNo" class="solr.ICUCollationField" locale="no" strength="primary"/>
+
+	<!-- Text -->
+	<fieldType name="text" class="solr.TextField" positionIncrementGap="100" sortMissingLast="true">
+		<analyzer>
+			<charFilter class="solr.HTMLStripCharFilterFactory"/>
+			<tokenizer class="solr.StandardTokenizerFactory"/>
+			<filter class="solr.LowerCaseFilterFactory"/>
+		</analyzer>
+	</fieldType>
+	<fieldType name="textFolded" class="solr.TextField" positionIncrementGap="100" sortMissingLast="true">
+		<analyzer>
+			<charFilter class="solr.HTMLStripCharFilterFactory"/>
+			<tokenizer class="solr.StandardTokenizerFactory"/>
+			<filter class="solr.LowerCaseFilterFactory"/>
+			<filter class="solr.ASCIIFoldingFilterFactory"/>
+		</analyzer>
+	</fieldType>
+	<fieldType name="textHu" class="solr.TextField" positionIncrementGap="100" sortMissingLast="true">
+		<analyzer>
+			<charFilter class="solr.HTMLStripCharFilterFactory"/>
+			<tokenizer class="solr.StandardTokenizerFactory"/>
+			<filter class="solr.LowerCaseFilterFactory"/>
+			<filter class="solr.HunspellStemFilterFactory" dictionary="${solr.solr.home}/lib/hu_HU.dic" affix="${solr.solr.home}/lib/hu_HU.aff"/>
+		</analyzer>
+	</fieldType>
+	<fieldType name="textHuFolded" class="solr.TextField" positionIncrementGap="100">
+		<analyzer>
+			<charFilter class="solr.HTMLStripCharFilterFactory"/>
+			<tokenizer class="solr.StandardTokenizerFactory"/>
+			<filter class="solr.LowerCaseFilterFactory"/>
+			<filter class="solr.HunspellStemFilterFactory" dictionary="${solr.solr.home}/lib/hu_HU.dic" affix="${solr.solr.home}/lib/hu_HU.aff"/>
+			<filter class="solr.ASCIIFoldingFilterFactory"/>
+		</analyzer>
+	</fieldType>
+
+</types>
