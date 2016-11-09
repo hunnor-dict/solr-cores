@@ -1,4 +1,4 @@
-FROM solr:6.2.1
+FROM solr:6.3.0
 
 RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true\"" >> bin/solr.in.sh
 
