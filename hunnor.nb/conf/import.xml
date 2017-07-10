@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataConfig>
+	<propertyWriter type="SimplePropertiesWriter" directory="/var/solr/hunnor.nb"/>
 	<dataSource name="hnFile" type="FileDataSource"/>
 	<document>
 		<entity baseDir="/opt/hunnor-dict/repo/dump" dataSource="null" fileName="^HunNor-XML-NH\.xml$" name="hnFile" processor="FileListEntityProcessor" recursive="true" rootEntity="false">
