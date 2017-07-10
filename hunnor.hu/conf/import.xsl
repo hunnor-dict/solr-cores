@@ -32,13 +32,15 @@
 				<field name="roots">
 					<xsl:value-of select="."/>
 				</field>
-				<field name="forms">
-					<xsl:value-of select="."/>
-				</field>
 			</xsl:for-each>
 			<field name="sort">
 				<xsl:value-of select="dict:formGrp/dict:form/dict:orth"/>
 			</field>
+			<xsl:for-each select="dict:formGrp/dict:form/dict:inflPar/dict:inflSeq">
+				<field name="forms">
+					<xsl:value-of select="."/>
+				</field>
+			</xsl:for-each>
 			<xsl:for-each select="dict:formGrp/dict:form/dict:inflCode">
 				<field name="par">
 					<xsl:value-of select="."/>
