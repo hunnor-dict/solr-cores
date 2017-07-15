@@ -20,9 +20,11 @@
 
 	<xsl:template match="dict:entry">
 		<doc>
-			<field name="id">
-				<xsl:value-of select="@id"/>
-			</field>
+			<xsl:if test="@id">
+				<field name="id">
+					<xsl:value-of select="@id"/>
+				</field>
+			</xsl:if>
 			<xsl:if test="@status">
 				<field name="status">
 					<xsl:value-of select="@status"/>
@@ -33,9 +35,11 @@
 					<xsl:value-of select="."/>
 				</field>
 			</xsl:for-each>
-			<field name="sort">
-				<xsl:value-of select="dict:formGrp/dict:form/dict:orth"/>
-			</field>
+			<xsl:if test="dict:formGrp/dict:form/dict:orth">
+				<field name="sort">
+					<xsl:value-of select="dict:formGrp/dict:form/dict:orth"/>
+				</field>
+			</xsl:if>
 			<xsl:for-each select="dict:formGrp/dict:form/dict:inflPar/dict:inflSeq">
 				<field name="forms">
 					<xsl:value-of select="."/>
@@ -61,9 +65,11 @@
 					<xsl:value-of select="."/>
 				</field>
 			</xsl:for-each>
-			<field name="html">
-				<xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text><xsl:apply-templates mode="html" select="."/><xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
-			</field>
+			<xsl:if test="dict:formGrp or dict:senseGrp">
+				<field name="html">
+					<xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text><xsl:apply-templates mode="html" select="."/><xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
+				</field>
+			</xsl:if>
 		</doc>
 	</xsl:template>
 
