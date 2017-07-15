@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec">
+	<x:scenario label="All entries should be indexed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry></entry>
+					<entry></entry>
+				</entryGrp>
+				<entryGrp>
+					<entry></entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="3 entry tags should produce 3 doc tags">
+			<add>
+				<doc></doc>
+				<doc></doc>
+				<doc></doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="The entry ID should be indexed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry id="1"></entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="The entry ID should be indexed">
+			<add>
+				<doc>
+					<field name="id">1</field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="The entry status should be indexed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry status="2"></entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="The entry status should be indexed">
+			<add>
+				<doc>
+					<field name="status">2</field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Root forms should be indexed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<formGrp>
+							<form>
+								<orth>root</orth>
+							</form>
+							<form>
+								<orth>form</orth>
+							</form>
+						</formGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Root forms should be indexed">
+			<add>
+				<doc>
+					<field name="roots">root</field>
+					<field name="roots">form</field>
+					<field name="sort">root</field>
+					<field name="html">...</field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Inflected forms should be indexed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<formGrp>
+							<form>
+								<orth>root</orth>
+								<inflPar>
+									<inflSeq>roots</inflSeq>
+								</inflPar>
+							</form>
+						</formGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Inflected forms should be indexed">
+			<add>
+				<doc>
+					<field name="roots">root</field>
+					<field name="sort">root</field>
+					<field name="forms">roots</field>
+					<field name="html">...</field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Inflection codes should be indexed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<formGrp>
+							<form>
+								<orth>root</orth>
+								<inflCode type="bob">code1</inflCode>
+							</form>
+							<form>
+								<orth>form</orth>
+								<inflCode type="bob">code2</inflCode>
+							</form>
+						</formGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Inflection codes should be indexed">
+			<add>
+				<doc>
+					<field name="roots">root</field>
+					<field name="roots">form</field>
+					<field name="sort">root</field>
+					<field name="par">code1</field>
+					<field name="par">code2</field>
+					<field name="html">...</field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Translations should be indexed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp>
+							<sense>
+								<trans>trans</trans>
+							</sense>
+						</senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Translations should be indexed">
+			<add>
+				<doc>
+					<field name="trans">trans</field>
+					<field name="html">...</field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Examples should be indexed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp>
+							<sense>
+								<eg>
+									<q>quote</q>
+								</eg>
+							</sense>
+						</senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Examples should be indexed">
+			<add>
+				<doc>
+					<field name="eg">quote</field>
+					<field name="html">...</field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Translations of examples should be indexed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp>
+							<sense>
+								<eg>
+									<trans>trans</trans>
+								</eg>
+							</sense>
+						</senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Translations of examples should be indexed">
+			<add>
+				<doc>
+					<field name="egTrans">trans</field>
+					<field name="html">...</field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+</x:description>

@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec">
+	<x:scenario label="A single form should be marked as single">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<formGrp>
+							<form></form>
+						</formGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="A single form should be marked as single">
+			<add>
+				<doc>
+					<field name="html"><![CDATA[<![CDATA[]]><ul class="form single">
+						<li>
+							<span class="orth"></span>
+						</li>
+					</ul><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Multiple form shouldn't be marked as single">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<formGrp>
+							<form></form>
+							<form></form>
+						</formGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Multiple form shouldn't be marked as single">
+			<add>
+				<doc>
+					<field name="html"><![CDATA[<![CDATA[]]><ul class="form">
+						<li>
+							<span class="orth"></span>
+						</li>
+						<li>
+							<span class="orth"></span>
+						</li>
+					</ul><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Orth should always be displayed, with PoS only for primary forms">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<formGrp>
+							<form primary="yes">
+								<orth>orth1</orth>
+								<pos>pos1</pos>
+							</form>
+							<form primary="no">
+								<orth>orth2</orth>
+							</form>
+						</formGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Orth should always be displayed, with PoS only for primary forms">
+			<add>
+				<doc>
+					<field name="roots">orth1</field>
+					<field name="roots">orth2</field>
+					<field name="sort">orth1</field>
+					<field name="html"><![CDATA[<![CDATA[]]><ul class="form">
+						<li>
+							<span class="orth">orth1</span>
+							 
+							<span class="pos">pos1</span>
+						</li>
+						<li>
+							<span class="orth">orth2</span>
+						</li>
+					</ul><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Inflection codes should be displayed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<formGrp>
+							<form primary="yes">
+								<orth>orth1</orth>
+								<pos>pos1</pos>
+								<inflCode type="bob">code1</inflCode>
+								<inflCode type="suff">form1, form2</inflCode>
+								<inflCode type="suff">form3, form4</inflCode>
+							</form>
+						</formGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Inflection codes should be displayed">
+			<add>
+				<doc>
+					<field name="roots">orth1</field>
+					<field name="sort">orth1</field>
+					<field name="par">code1</field>
+					<field name="par">form1, form2</field>
+					<field name="par">form3, form4</field>
+					<field name="html"><![CDATA[<![CDATA[]]><ul class="form single">
+						<li>
+							<span class="orth">orth1</span>
+							 
+							<span class="pos">pos1</span>
+							 
+							<span class="infl bob">code1</span>
+							 
+							<span class="infl suff">form1, form2</span>
+							 
+							<span class="infl suff">form3, form4</span>
+						</li>
+					</ul><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Inflected forms should be displayed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<formGrp>
+							<form primary="yes">
+								<orth>orth1</orth>
+								<pos>pos1</pos>
+								<inflPar>
+									<inflSeq form="0-0">form1</inflSeq>
+									<inflSeq form="0-1">form2</inflSeq>
+								</inflPar>
+								<inflPar>
+									<inflSeq form="1-0">form3</inflSeq>
+									<inflSeq form="1-1">form4</inflSeq>
+								</inflPar>
+							</form>
+						</formGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Inflected forms should be displayed">
+			<add>
+				<doc>
+					<field name="roots">orth1</field>
+					<field name="sort">orth1</field>
+					<field name="forms">form1</field>
+					<field name="forms">form2</field>
+					<field name="forms">form3</field>
+					<field name="forms">form4</field>
+					<field name="html"><![CDATA[<![CDATA[]]><ul class="form single">
+						<li>
+							<span class="orth">orth1</span>
+							 
+							<span class="pos">pos1</span> (form1, form2; form3, form4)</li>
+					</ul><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="A single senseGrp should be marked as single">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp></senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="A single senseGrp should be marked as single">
+			<add>
+				<doc>
+					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
+						<li></li>
+					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Multiple senseGrp shouldn't be marked as single">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp></senseGrp>
+						<senseGrp></senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Multiple senseGrp shouldn't be marked as single">
+			<add>
+				<doc>
+					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp">
+						<li></li>
+						<li></li>
+					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="A single sense should be marked as single">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp>
+							<sense></sense>
+						</senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="A single sense should be marked as single">
+			<add>
+				<doc>
+					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
+						<li>
+							<ol class="sense single">
+								<li>
+									<ul></ul>
+								</li>
+							</ol>
+						</li>
+					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Multiple sense shouldn't be marked as single">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp>
+							<sense></sense>
+							<sense></sense>
+						</senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Multiple sense shouldn't be marked as single">
+			<add>
+				<doc>
+					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
+						<li>
+							<ol class="sense">
+								<li>
+									<ul></ul>
+								</li>
+								<li>
+									<ul></ul>
+								</li>
+							</ol>
+						</li>
+					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Labels should be displayed with proper glue strings">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp>
+							<sense>
+								<lbl>lbl1</lbl>
+								<lbl>lbl2</lbl>
+							</sense>
+							<sense>
+								<trans>trans1</trans>
+								<lbl>lbl3</lbl>
+							</sense>
+						</senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Labels should be displayed with proper glue strings">
+			<add>
+				<doc>
+					<field name="trans">trans1</field>
+					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
+						<li>
+							<ol class="sense">
+								<li>
+									<ul>
+										<li class="lbl">
+											<span class="lbl">lbl1</span>
+										</li>
+										<li class="lbl">
+											<span class="glue">, </span>
+											<span class="lbl">lbl2</span>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<ul>
+										<li class="trans">
+											<span class="trans">trans1</span>
+										</li>
+										<li class="lbl">
+											<span class="glue">, </span>
+											<span class="lbl">lbl3</span>
+										</li>
+									</ul>
+								</li>
+							</ol>
+						</li>
+					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Translations should be displayed with proper glue strings">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp>
+							<sense>
+								<lbl>lbl1</lbl>
+								<trans>trans1</trans>
+							</sense>
+							<sense>
+								<trans>trans2</trans>
+								<trans>trans3</trans>
+							</sense>
+						</senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Translations should be displayed with proper glue strings">
+			<add>
+				<doc>
+					<field name="trans">trans1</field>
+					<field name="trans">trans2</field>
+					<field name="trans">trans3</field>
+					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
+						<li>
+							<ol class="sense">
+								<li>
+									<ul>
+										<li class="lbl">
+											<span class="lbl">lbl1</span>
+										</li>
+										<li class="trans">
+											<span class="glue">
+												
+											</span>
+											<span class="trans">trans1</span>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<ul>
+										<li class="trans">
+											<span class="trans">trans2</span>
+										</li>
+										<li class="trans">
+											<span class="glue">, </span>
+											<span class="trans">trans3</span>
+										</li>
+									</ul>
+								</li>
+							</ol>
+						</li>
+					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="Examples should be displayed">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp>
+							<sense>
+								<eg>
+									<q>q1</q>
+									<trans>trans1</trans>
+								</eg>
+								<eg>
+									<q>q2</q>
+									<q>q3</q>
+									<trans>trans2</trans>
+								</eg>
+							</sense>
+						</senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Examples should be displayed">
+			<add>
+				<doc>
+					<field name="eg">q1</field>
+					<field name="eg">q2</field>
+					<field name="eg">q3</field>
+					<field name="egTrans">trans1</field>
+					<field name="egTrans">trans2</field>
+					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
+						<li>
+							<ol class="sense single">
+								<li>
+									<ul>
+										<li class="eg">
+											<ul class="eg">
+												<li class="q">
+													<span class="q">q1</span>
+												</li>
+												<li class="trans">
+													<span class="glue">
+														 
+													</span>
+													<span class="trans">trans1</span>
+												</li>
+											</ul>
+										</li>
+										<li class="eg">
+											<ul class="eg">
+												<li class="q">
+													<span class="glue">; </span>
+													<span class="q">q2</span>
+												</li>
+												<li class="q">
+													<span class="glue">, </span>
+													<span class="q">q3</span>
+												</li>
+												<li class="trans">
+													<span class="glue">
+														 
+													</span>
+													<span class="trans">trans2</span>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ol>
+						</li>
+					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+</x:description>
