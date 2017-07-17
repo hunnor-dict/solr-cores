@@ -3,7 +3,7 @@
 	<propertyWriter type="SimplePropertiesWriter" directory="/var/solr/hunnor.hu"/>
 	<dataSource name="hnFile" type="FileDataSource"/>
 	<document>
-		<entity baseDir="/opt/hunnor-dict/repo/dump" dataSource="null" fileName="^HunNor-XML-HN\.xml$" name="hnFile" processor="FileListEntityProcessor" recursive="true" rootEntity="false">
+		<entity baseDir="${hunnor.dump.dir}" dataSource="null" fileName="${hunnor.dump.file.hu}" name="hnFile" processor="FileListEntityProcessor" recursive="true" rootEntity="false">
 			<entity dataSource="hnFile" forEach="/hnDict/entryGrp/entry" name="hnDoc" processor="XPathEntityProcessor" rootEntity="true" stream="false" url="${hnFile.fileAbsolutePath}" xsl="${solr.solr.home}/hunnor.hu/conf/import.xsl" useSolrAddSchema="true"/>
 		</entity>
 	</document>
