@@ -9,7 +9,7 @@
 	<lib dir="${solr.install.dir}/dist/" regex="solr-dataimporthandler-\d.*\.jar"/>
 	<lib dir="${solr.install.dir}/dist/" regex="solr-dataimporthandler-extras-\d.*\.jar"/>
 
-	<dataDir>/var/solr/${solr.core.name}</dataDir>
+	<dataDir>/var/opt/solr/data/${solr.core.name}</dataDir>
 
 	<directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}">
 		<str name="solr.hdfs.home">${solr.hdfs.home:}</str>

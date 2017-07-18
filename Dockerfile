@@ -22,7 +22,7 @@ USER root
 
 RUN chown -R $SOLR_USER:$SOLR_USER server/solr
 
-RUN mkdir /var/solr
-RUN chown -R $SOLR_USER:$SOLR_USER /var/solr
+RUN mkdir -p /var/opt/solr/data/
+RUN chown -R $SOLR_USER:$SOLR_USER /var/opt/solr/data/
 
 USER $SOLR_USER
