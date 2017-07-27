@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataConfig>
-	<propertyWriter type="SimplePropertiesWriter" directory="/var/solr/hunnor.hu"/>
+	<propertyWriter type="SimplePropertiesWriter" directory="/var/opt/solr/data/hunnor.hu"/>
 	<dataSource name="hnFile" type="FileDataSource"/>
 	<document>
 		<entity baseDir="${hunnor.dump.dir}" dataSource="null" fileName="${hunnor.dump.file.hu}" name="hnFile" processor="FileListEntityProcessor" recursive="true" rootEntity="false">
