@@ -4,7 +4,7 @@
 	<dataSource name="hnFile" type="FileDataSource"/>
 	<document>
 		<entity baseDir="${hunnor.dump.dir}" dataSource="null" fileName="${hunnor.dump.file.hu}" name="hnFile" processor="FileListEntityProcessor" recursive="true" rootEntity="false">
-			<entity dataSource="hnFile" forEach="/hnDict/entryGrp/entry" name="hnDoc" processor="XPathEntityProcessor" rootEntity="true" stream="false" url="${hnFile.fileAbsolutePath}" xsl="${solr.solr.home}/hunnor.hu/conf/import.xsl" useSolrAddSchema="true"/>
+			<entity dataSource="hnFile" forEach="/hnDict/entryGrp/entry" name="hnDoc" processor="XPathEntityProcessor" rootEntity="true" stream="false" url="${hnFile.fileAbsolutePath}" xsl="${solr.solr.home}/hunnor.hu/conf/xslt/import.xsl" useSolrAddSchema="true"/>
 		</entity>
 	</document>
 </dataConfig>
