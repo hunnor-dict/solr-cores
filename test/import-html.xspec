@@ -15,11 +15,7 @@
 		<x:expect label="A single form should be marked as single">
 			<add>
 				<doc>
-					<field name="html"><![CDATA[<![CDATA[]]><ul class="form single">
-						<li>
-							<span class="orth"></span>
-						</li>
-					</ul><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ul class="form single"><li><span class="orth"></span></li></ul>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -40,14 +36,7 @@
 		<x:expect label="Multiple form shouldn't be marked as single">
 			<add>
 				<doc>
-					<field name="html"><![CDATA[<![CDATA[]]><ul class="form">
-						<li>
-							<span class="orth"></span>
-						</li>
-						<li>
-							<span class="orth"></span>
-						</li>
-					</ul><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ul class="form"><li><span class="orth"></span></li><li><span class="orth"></span></li></ul>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -76,16 +65,7 @@
 					<field name="roots">orth1</field>
 					<field name="roots">orth2</field>
 					<field name="sort">orth1</field>
-					<field name="html"><![CDATA[<![CDATA[]]><ul class="form">
-						<li>
-							<span class="orth">orth1</span>
-							 
-							<span class="pos">pos1</span>
-						</li>
-						<li>
-							<span class="orth">orth2</span>
-						</li>
-					</ul><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ul class="form"><li><span class="orth">orth1</span> <span class="pos">pos1</span></li><li><span class="orth">orth2</span></li></ul>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -116,19 +96,7 @@
 					<field name="par">code1</field>
 					<field name="par">form1, form2</field>
 					<field name="par">form3, form4</field>
-					<field name="html"><![CDATA[<![CDATA[]]><ul class="form single">
-						<li>
-							<span class="orth">orth1</span>
-							 
-							<span class="pos">pos1</span>
-							 
-							<span class="infl bob">code1</span>
-							 
-							<span class="infl suff">form1, form2</span>
-							 
-							<span class="infl suff">form3, form4</span>
-						</li>
-					</ul><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ul class="form single"><li><span class="orth">orth1</span> <span class="pos">pos1</span> <span class="infl bob">code1</span> <span class="infl suff">form1, form2</span> <span class="infl suff">form3, form4</span></li></ul>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -165,12 +133,7 @@
 					<field name="forms">form2</field>
 					<field name="forms">form3</field>
 					<field name="forms">form4</field>
-					<field name="html"><![CDATA[<![CDATA[]]><ul class="form single">
-						<li>
-							<span class="orth">orth1</span>
-							 
-							<span class="pos">pos1</span> (form1, form2; form3, form4)</li>
-					</ul><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ul class="form single"><li><span class="orth">orth1</span> <span class="pos">pos1</span> (form1, form2; form3, form4)</li></ul>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -188,9 +151,7 @@
 		<x:expect label="A single senseGrp should be marked as single">
 			<add>
 				<doc>
-					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
-						<li></li>
-					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ol class="senseGrp single"><li></li></ol>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -209,10 +170,7 @@
 		<x:expect label="Multiple senseGrp shouldn't be marked as single">
 			<add>
 				<doc>
-					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp">
-						<li></li>
-						<li></li>
-					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ol class="senseGrp"><li></li><li></li></ol>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -232,15 +190,7 @@
 		<x:expect label="A single sense should be marked as single">
 			<add>
 				<doc>
-					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
-						<li>
-							<ol class="sense single">
-								<li>
-									<ul></ul>
-								</li>
-							</ol>
-						</li>
-					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ol class="senseGrp single"><li><ol class="sense single"><li><ul></ul></li></ol></li></ol>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -261,18 +211,7 @@
 		<x:expect label="Multiple sense shouldn't be marked as single">
 			<add>
 				<doc>
-					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
-						<li>
-							<ol class="sense">
-								<li>
-									<ul></ul>
-								</li>
-								<li>
-									<ul></ul>
-								</li>
-							</ol>
-						</li>
-					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ol class="senseGrp single"><li><ol class="sense"><li><ul></ul></li><li><ul></ul></li></ol></li></ol>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -300,34 +239,7 @@
 			<add>
 				<doc>
 					<field name="trans">trans1</field>
-					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
-						<li>
-							<ol class="sense">
-								<li>
-									<ul>
-										<li class="lbl">
-											<span class="lbl">lbl1</span>
-										</li>
-										<li class="lbl">
-											<span class="glue">, </span>
-											<span class="lbl">lbl2</span>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="trans">
-											<span class="trans">trans1</span>
-										</li>
-										<li class="lbl">
-											<span class="glue">, </span>
-											<span class="lbl">lbl3</span>
-										</li>
-									</ul>
-								</li>
-							</ol>
-						</li>
-					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ol class="senseGrp single"><li><ol class="sense"><li><ul><li class="lbl"><span class="lbl">lbl1</span></li><li class="lbl"><span class="glue">, </span><span class="lbl">lbl2</span></li></ul></li><li><ul><li class="trans"><span class="trans">trans1</span></li><li class="lbl"><span class="glue">, </span><span class="lbl">lbl3</span></li></ul></li></ol></li></ol>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -357,36 +269,7 @@
 					<field name="trans">trans1</field>
 					<field name="trans">trans2</field>
 					<field name="trans">trans3</field>
-					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
-						<li>
-							<ol class="sense">
-								<li>
-									<ul>
-										<li class="lbl">
-											<span class="lbl">lbl1</span>
-										</li>
-										<li class="trans">
-											<span class="glue">
-												
-											</span>
-											<span class="trans">trans1</span>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="trans">
-											<span class="trans">trans2</span>
-										</li>
-										<li class="trans">
-											<span class="glue">, </span>
-											<span class="trans">trans3</span>
-										</li>
-									</ul>
-								</li>
-							</ol>
-						</li>
-					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ol class="senseGrp single"><li><ol class="sense"><li><ul><li class="lbl"><span class="lbl">lbl1</span></li><li class="trans"><span class="glue"> </span><span class="trans">trans1</span></li></ul></li><li><ul><li class="trans"><span class="trans">trans2</span></li><li class="trans"><span class="glue">, </span><span class="trans">trans3</span></li></ul></li></ol></li></ol>]]></field>
 				</doc>
 			</add>
 		</x:expect>
@@ -421,47 +304,7 @@
 					<field name="eg">q3</field>
 					<field name="egTrans">trans1</field>
 					<field name="egTrans">trans2</field>
-					<field name="html"><![CDATA[<![CDATA[]]><ol class="senseGrp single">
-						<li>
-							<ol class="sense single">
-								<li>
-									<ul>
-										<li class="eg">
-											<ul class="eg">
-												<li class="q">
-													<span class="q">q1</span>
-												</li>
-												<li class="trans">
-													<span class="glue">
-														 
-													</span>
-													<span class="trans">trans1</span>
-												</li>
-											</ul>
-										</li>
-										<li class="eg">
-											<ul class="eg">
-												<li class="q">
-													<span class="glue">; </span>
-													<span class="q">q2</span>
-												</li>
-												<li class="q">
-													<span class="glue">, </span>
-													<span class="q">q3</span>
-												</li>
-												<li class="trans">
-													<span class="glue">
-														 
-													</span>
-													<span class="trans">trans2</span>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ol>
-						</li>
-					</ol><![CDATA[]]]]><![CDATA[>]]></field>
+					<field name="html"><![CDATA[<ol class="senseGrp single"><li><ol class="sense single"><li><ul><li class="eg"><ul class="eg"><li class="q"><span class="q">q1</span></li><li class="trans"><span class="glue"> </span><span class="trans">trans1</span></li></ul></li><li class="eg"><ul class="eg"><li class="q"><span class="glue">; </span><span class="q">q2</span></li><li class="q"><span class="glue">, </span><span class="q">q3</span></li><li class="trans"><span class="glue"> </span><span class="trans">trans2</span></li></ul></li></ul></li></ol></li></ol>]]></field>
 				</doc>
 			</add>
 		</x:expect>

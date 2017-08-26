@@ -4,7 +4,7 @@
 
 	<xsl:import href="import-html.xsl"/>
 
-	<xsl:output method="xml" indent="no"/>
+	<xsl:output method="xml" indent="no" cdata-section-elements="field"/>
 
 	<xsl:strip-space elements="*"/>
 
@@ -67,7 +67,7 @@
 			</xsl:for-each>
 			<xsl:if test="dict:formGrp or dict:senseGrp">
 				<field name="html">
-					<xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text><xsl:apply-templates mode="html" select="."/><xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
+					<xsl:apply-templates mode="html" select="."/>
 				</field>
 			</xsl:if>
 		</doc>

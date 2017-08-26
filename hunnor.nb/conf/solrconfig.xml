@@ -72,6 +72,13 @@
 		</lst>
 	</requestHandler>
 
+	<requestHandler name="/update" class="solr.UpdateRequestHandler">
+		<lst name="defaults">
+			<str name="tr">import.xsl</str>
+			<bool name="commit">true</bool>
+		</lst>
+	</requestHandler>
+
 	<requestHandler name="/select" class="solr.SearchHandler">
 		<lst name="defaults">
 			<str name="echoParams">explicit</str>
