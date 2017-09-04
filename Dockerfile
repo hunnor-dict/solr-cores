@@ -5,10 +5,10 @@ RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true\"" >>
 ENV HUNNOR_DUMP_FILE_HU hunnor-hu.xml
 ENV HUNNOR_DUMP_FILE_NB hunnor-nb.xml
 
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.dir.hu=\$(dirname /hunnor/${HUNNOR_DUMP_FILE_HU})\"" >> bin/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.hu=\$(basename /hunnor/${HUNNOR_DUMP_FILE_HU})\"" >> bin/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.dir.nb=\$(dirname /hunnor/${HUNNOR_DUMP_FILE_NB})\"" >> bin/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.nb=\$(basename /hunnor/${HUNNOR_DUMP_FILE_NB})\"" >> bin/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.dir.hu=\$(dirname /hunnor/\$HUNNOR_DUMP_FILE_HU)\"" >> bin/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.hu=\$(basename /hunnor/\$HUNNOR_DUMP_FILE_HU)\"" >> bin/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.dir.nb=\$(dirname /hunnor/\$HUNNOR_DUMP_FILE_NB)\"" >> bin/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.nb=\$(basename /hunnor/\$HUNNOR_DUMP_FILE_NB)\"" >> bin/solr.in.sh
 
 RUN rm -r /opt/solr/server/solr/*
 
