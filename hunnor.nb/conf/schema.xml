@@ -2,7 +2,7 @@
 <schema name="hunnor.nb" version="1.6">
 
 	<field name="_version_" type="long" indexed="true" stored="true"/>
-	<field name="id" type="long" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
 
 	<field name="status" type="int" indexed="true" stored="true" required="false" multiValued="false"/>
 

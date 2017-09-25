@@ -5,8 +5,8 @@
 	<fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
 
 	<!-- Numeric -->
-	<fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
-	<fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+	<fieldType name="int" class="solr.IntPointField"/>
+	<fieldType name="long" class="solr.LongPointField"/>
 
 	<!-- String -->
 	<fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
