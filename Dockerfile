@@ -1,7 +1,7 @@
-FROM solr:7.1.0
+FROM solr:7.2.0
 
 RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true\"" >> bin/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=7.1.0\"" >> bin/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=7.2.0\"" >> bin/solr.in.sh
 
 ENV HUNNOR_DUMP_FILE_HU hunnor-hu.xml
 ENV HUNNOR_DUMP_FILE_NB hunnor-nb.xml
