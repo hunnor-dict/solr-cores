@@ -24,7 +24,7 @@ Start Solr with the files made available to the container, e.g. with volumes, an
 
 For example, if the files are `$HOME/hunnor/data/HunNor-XML-HN.xml` and `$HOME/hunnor/data/HunNor-XML-NH.xml`, use:
 
-`docker run --publish 8983:8983 --env HUNNOR_DUMP_FILE_HU=HunNor-XML-HN.xml --env HUNNOR_DUMP_FILE_NB=HunNor-XML-NH.xml --volume $HOME/hunnor/data:/hunnor hunnordict/solr-cores`
+`docker run --env HUNNOR_DUMP_FILE_HU=HunNor-XML-HN.xml --env HUNNOR_DUMP_FILE_NB=HunNor-XML-NH.xml --name solr-cores --publish 8983:8983 --volume $HOME/hunnor/data:/hunnor hunnordict/solr-cores`
 
 When the container is running, go to http://localhost:8983 and use data import from the menu of each core.
 
