@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	 xmlns:dict="http://dict.hunnor.net" exclude-result-prefixes="dict">
+	xmlns:dict="http://dict.hunnor.net" exclude-result-prefixes="dict">
 
 	<xsl:template match="dict:entry" mode="html">
 		<xsl:apply-templates select="dict:formGrp" mode="html"/>
@@ -96,7 +96,13 @@
 	</xsl:template>
 
 	<xsl:template match="dict:lbl" mode="html">
+		<xsl:param name="eg" select="false()"/>
 		<xsl:text disable-output-escaping="yes">&lt;li class="lbl"></xsl:text>
+		<xsl:if test="$eg">
+			<xsl:if test="position() = 1">
+				<xsl:text disable-output-escaping="yes">&lt;span class="glue">; &lt;/span></xsl:text>
+			</xsl:if>
+		</xsl:if>
 		<xsl:choose>
 			<xsl:when test="local-name(preceding-sibling::*[1]) = 'lbl'">
 				<xsl:text disable-output-escaping="yes">&lt;span class="glue">, &lt;/span></xsl:text>
@@ -129,7 +135,9 @@
 	<xsl:template match="dict:eg" mode="html">
 		<xsl:text disable-output-escaping="yes">&lt;li class="eg"></xsl:text>
 		<xsl:text disable-output-escaping="yes">&lt;ul class="eg"></xsl:text>
-		<xsl:apply-templates mode="html"/>
+		<xsl:apply-templates mode="html">
+			<xsl:with-param name="eg" select="true()"/>
+		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes">&lt;/ul></xsl:text>
 		<xsl:text disable-output-escaping="yes">&lt;/li></xsl:text>
 	</xsl:template>
@@ -143,6 +151,9 @@
 				<xsl:choose>
 					<xsl:when test="position() = 1">
 						<xsl:text disable-output-escaping="yes">&lt;span class="glue">; &lt;/span></xsl:text>
+					</xsl:when>
+					<xsl:when test="local-name(preceding-sibling::*[1]) = 'lbl'">
+						<xsl:text disable-output-escaping="yes">&lt;span class="glue"> &lt;/span></xsl:text>
 					</xsl:when>
 					<xsl:when test="local-name(preceding-sibling::*[1]) = 'q'">
 						<xsl:text disable-output-escaping="yes">&lt;span class="glue">, &lt;/span></xsl:text>

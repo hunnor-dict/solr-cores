@@ -309,4 +309,38 @@
 			</add>
 		</x:expect>
 	</x:scenario>
+	<x:scenario label="Labels should be displayed inside examples">
+		<x:context>
+			<hnDict xmlns="http://dict.hunnor.net">
+				<entryGrp>
+					<entry>
+						<senseGrp>
+							<sense>
+								<eg>
+									<q>q1</q>
+									<trans>trans1</trans>
+								</eg>
+								<eg>
+									<lbl>lbl1</lbl>
+									<q>q2</q>
+									<trans>trans2</trans>
+								</eg>
+							</sense>
+						</senseGrp>
+					</entry>
+				</entryGrp>
+			</hnDict>
+		</x:context>
+		<x:expect label="Labels should be displayed inside examples">
+			<add>
+				<doc>
+					<field name="eg">q1</field>
+					<field name="eg">q2</field>
+					<field name="egTrans">trans1</field>
+					<field name="egTrans">trans2</field>
+					<field name="html"><![CDATA[<ol class="senseGrp single"><li><ol class="sense single"><li><ul><li class="eg"><ul class="eg"><li class="q"><span class="q">q1</span></li><li class="trans"><span class="glue"> </span><span class="trans">trans1</span></li></ul></li><li class="eg"><ul class="eg"><li class="lbl"><span class="glue">; </span><span class="lbl">lbl1</span></li><li class="q"><span class="glue"> </span><span class="q">q2</span></li><li class="trans"><span class="glue"> </span><span class="trans">trans2</span></li></ul></li></ul></li></ol></li></ol>]]></field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
 </x:description>
