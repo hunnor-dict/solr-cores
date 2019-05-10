@@ -1,31 +1,34 @@
-FROM solr:7.7.1
+FROM solr:8.0.0
 
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true\"" >> bin/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=7.7.1\"" >> bin/solr.in.sh
+USER root
+
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true\"" >> /etc/default/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=8.0.0\"" >> /etc/default/solr.in.sh
 
 ENV HUNNOR_DUMP_FILE_HU hunnor-hu.xml
 ENV HUNNOR_DUMP_FILE_NB hunnor-nb.xml
 
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.dir.hu=\$(dirname /hunnor/\$HUNNOR_DUMP_FILE_HU)\"" >> bin/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.hu=\$(basename /hunnor/\$HUNNOR_DUMP_FILE_HU)\"" >> bin/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.dir.nb=\$(dirname /hunnor/\$HUNNOR_DUMP_FILE_NB)\"" >> bin/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.nb=\$(basename /hunnor/\$HUNNOR_DUMP_FILE_NB)\"" >> bin/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.dir.hu=\$(dirname /hunnor/\$HUNNOR_DUMP_FILE_HU)\"" >> /etc/default/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.hu=\$(basename /hunnor/\$HUNNOR_DUMP_FILE_HU)\"" >> /etc/default/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.dir.nb=\$(dirname /hunnor/\$HUNNOR_DUMP_FILE_NB)\"" >> /etc/default/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.nb=\$(basename /hunnor/\$HUNNOR_DUMP_FILE_NB)\"" >> /etc/default/solr.in.sh
 
-RUN echo "SOLR_HEAP=1024m" >> bin/solr.in.sh
+RUN echo "SOLR_HEAP=1024m" >> /etc/default/solr.in.sh
 
-RUN rm -r /opt/solr/server/solr/*
+RUN rm -r server/solr/*
 
-COPY field-types.xml server/solr
-COPY hunnor.hu server/solr/hunnor.hu
-COPY hunnor.nb server/solr/hunnor.nb
-COPY lib server/solr/lib
-COPY solr.xml server/solr
+RUN mkdir -p /opt/hunnor-dict/solr-cores
+COPY solr.xml /opt/hunnor-dict/solr-cores
+COPY field-types.xml /opt/hunnor-dict/solr-cores
+COPY hunnor.hu /opt/hunnor-dict/solr-cores/hunnor.hu
+COPY hunnor.nb /opt/hunnor-dict/solr-cores/hunnor.nb
+COPY lib /opt/hunnor-dict/solr-cores/lib
 
-USER root
+ENV SOLR_HOME /opt/hunnor-dict/solr-cores
 
-RUN chown -R $SOLR_USER:$SOLR_USER server/solr
+RUN mkdir -p /var/opt/solr/data
+RUN chown -R $SOLR_USER:$SOLR_USER /var/opt/solr/data
 
-RUN mkdir -p /var/opt/solr/data/
-RUN chown -R $SOLR_USER:$SOLR_USER /var/opt/solr/data/
+RUN chown -R $SOLR_USER:$SOLR_USER /opt/hunnor-dict/solr-cores
 
 USER $SOLR_USER
