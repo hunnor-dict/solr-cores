@@ -1,3 +1,16 @@
+FROM maven:3.6-jdk-11 as maven
+
+COPY tester /opt/hunnor-dict/solr-cores/tester
+COPY hunnor.hu /opt/hunnor-dict/solr-cores/hunnor.hu
+COPY hunnor.nb /opt/hunnor-dict/solr-cores/hunnor.nb
+
+WORKDIR /opt/hunnor-dict/solr-cores/tester
+RUN mvn verify
+
+
+
+
+
 FROM solr:8.0.0
 
 USER root
