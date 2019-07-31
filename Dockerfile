@@ -18,13 +18,11 @@ USER root
 RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true\"" >> /etc/default/solr.in.sh
 RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=8.1.1\"" >> /etc/default/solr.in.sh
 
-ENV HUNNOR_DUMP_FILE_HU hunnor-hu.xml
-ENV HUNNOR_DUMP_FILE_NB hunnor-nb.xml
+ENV HUNNOR_DUMP_FILE_HU /hunnor/hunnor-hu.xml
+ENV HUNNOR_DUMP_FILE_NB /hunnor/hunnor-nb.xml
 
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.dir.hu=\$(dirname /hunnor/\$HUNNOR_DUMP_FILE_HU)\"" >> /etc/default/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.hu=\$(basename /hunnor/\$HUNNOR_DUMP_FILE_HU)\"" >> /etc/default/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.dir.nb=\$(dirname /hunnor/\$HUNNOR_DUMP_FILE_NB)\"" >> /etc/default/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.nb=\$(basename /hunnor/\$HUNNOR_DUMP_FILE_NB)\"" >> /etc/default/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.hu=\$HUNNOR_DUMP_FILE_HU\"" >> /etc/default/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dhunnor.dump.file.nb=\$HUNNOR_DUMP_FILE_NB\"" >> /etc/default/solr.in.sh
 
 RUN echo "SOLR_HEAP=1024m" >> /etc/default/solr.in.sh
 

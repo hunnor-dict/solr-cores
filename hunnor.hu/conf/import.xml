@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataConfig>
 	<propertyWriter type="SimplePropertiesWriter" directory="/var/opt/solr/data/hunnor.hu"/>
-	<dataSource name="hnFile" type="FileDataSource"/>
+	<dataSource name="hnDataSource" type="FileDataSource"/>
 	<document>
-		<entity baseDir="${hunnor.dump.dir.hu}" dataSource="null" fileName="^${hunnor.dump.file.hu}$" name="hnFile" processor="FileListEntityProcessor" recursive="true" rootEntity="false">
-			<entity dataSource="hnFile" forEach="/hnDict/entryGrp/entry" name="hnDoc" processor="XPathEntityProcessor" rootEntity="true" stream="false" url="${hnFile.fileAbsolutePath}" xsl="${solr.solr.home}/hunnor.hu/conf/xslt/import.xsl" useSolrAddSchema="true"/>
-		</entity>
+		<entity name="hnEntity" processor="XPathEntityProcessor" dataSource="hnDataSource" url="${hunnor.dump.file.hu}"
+			forEach="/hnDict/entryGrp/entry" xsl="${solr.solr.home}/hunnor.hu/conf/xslt/import.xsl" useSolrAddSchema="true"/>
 	</document>
 </dataConfig>
