@@ -22,7 +22,7 @@
 		<maven.install.plugin.version>3.0.0-M1</maven.install.plugin.version>
 		<maven.jar.plugin.version>3.1.2</maven.jar.plugin.version>
 		<maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
-		<maven.site.plugin.version>3.7.1</maven.site.plugin.version>
+		<maven.site.plugin.version>3.8.2</maven.site.plugin.version>
 		<maven.surefire.plugin.version>3.0.0-M3</maven.surefire.plugin.version>
 		<maven.xspec.plugin.version>1.5.1</maven.xspec.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
