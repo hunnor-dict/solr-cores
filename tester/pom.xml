@@ -24,6 +24,7 @@
 		<maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
 		<maven.site.plugin.version>3.8.2</maven.site.plugin.version>
 		<maven.surefire.plugin.version>3.0.0-M3</maven.surefire.plugin.version>
+		<maven.versions.plugin.version>2.7</maven.versions.plugin.version>
 		<maven.xspec.plugin.version>1.5.1</maven.xspec.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<saxon.version>9.9.1-5</saxon.version>
@@ -130,6 +131,14 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>${maven.versions.plugin.version}</version>
+				<configuration>
+					<rulesUri>file://${project.basedir}/versions.xml</rulesUri>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
