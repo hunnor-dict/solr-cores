@@ -1,4 +1,4 @@
-FROM maven:3.6-jdk-11 as maven
+FROM maven:3.6-jdk-13 as maven
 
 COPY tester /opt/hunnor-dict/solr-cores/tester
 COPY hunnor.hu /opt/hunnor-dict/solr-cores/hunnor.hu
