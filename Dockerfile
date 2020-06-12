@@ -11,12 +11,12 @@ RUN mvn verify
 
 
 
-FROM solr:8.5.1
+FROM solr:8.5.2
 
 USER root
 
 RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true\"" >> /etc/default/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=8.5.1\"" >> /etc/default/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=8.5.2\"" >> /etc/default/solr.in.sh
 
 ENV HUNNOR_DUMP_FILE_HU /hunnor/hunnor-hu.xml
 ENV HUNNOR_DUMP_FILE_NB /hunnor/hunnor-nb.xml
