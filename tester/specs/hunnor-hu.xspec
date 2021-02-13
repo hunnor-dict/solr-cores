@@ -2,4 +2,5 @@
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../../hunnor.hu/conf/xslt/import.xsl">
 	<x:import href="../includes/import.xspec"/>
 	<x:import href="../includes/import-html.xspec"/>
+	<x:import href="../includes/solr.xspec"/>
 </x:description>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec">
+	<x:scenario label="When an add Solr XML message is sent">
+		<x:context>
+			<add>
+				<doc>
+					<field name="id">1</field>
+				</doc>
+			</add>
+		</x:context>
+		<x:expect label="Then the message is preserved">
+			<add>
+				<doc>
+					<field name="id">1</field>
+				</doc>
+			</add>
+		</x:expect>
+	</x:scenario>
+	<x:scenario label="When a delete Solr XML message is sent">
+		<x:context>
+			<delete>
+				<query>id:1</query>
+			</delete>
+		</x:context>
+		<x:expect label="Then the message is preserved">
+			<delete>
+				<query>id:1</query>
+			</delete>
+		</x:expect>
+	</x:scenario>
+</x:description>
