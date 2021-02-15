@@ -6,25 +6,19 @@ Run the Solr server with docker:
 
 `docker run --name solr-cores --publish 8983:8983 hunnordict/solr-cores`
 
-Data can be loaded either directly by sending documents to Solr, or with the Solr `DataImportHandler` that is configured for each core.
+Data can be loaded by sending documents to Solr. For a bulk import, send the XML dump files to Solr. Follow the instructions in the [`export-ant`](https://github.com/hunnor-dict/export-ant) repository do download the XML dump files.
 
-To use the data import handler, the XML dump files of the dictionary have to be available to Solr. The files Solr looks for are defined by the following environment variables:
+`curl -X POST http://localhost:8983/solr/hunnor.hu/update --data-binary @/path/to/HunNor-XML-HN.xml --header "Content-Type: text/xml"`
 
-- `hunnor.dump.file.hu`: the file of the Hungarian export, default `/hunnor/hunnor-hu.xml`
-- `hunnor.dump.file.nb`: the file of the Norwegian export, default `/hunnor/hunnor-nb.xml`
+`curl -X POST http://localhost:8983/solr/hunnor.nb/update --data-binary @/path/to/HunNor-XML-NH.xml --header "Content-Type: text/xml"`
 
-Follow the instructions in the [`export-ant`](https://github.com/hunnor-dict/export-ant) repository do download the XML dump files.
+XSLT files are configured for each core to transform the HunNor XML data to Solr documents. See `xslt/import.xsl` in the core configuration directories.
 
-Start Solr with the files made available to the container, e.g. with volumes, and their locations properly configured. The following environment variables define the file locations:
+The XSLT files leave Solr messages unchanged:
 
-- `HUNNOR_DUMP_FILE_HU`: sets `hunnor.dump.file.hu`
-- `HUNNOR_DUMP_FILE_NB`: sets `hunnor.dump.file.nb`
+`curl -X POST http://localhost:8983/solr/hunnor.nb/update --data "<delete><query>*:*</query></delete>" --header "Content-Type: text/xml"`
 
-For example, if the files are `$HOME/hunnor/data/HunNor-XML-HN.xml` and `$HOME/hunnor/data/HunNor-XML-NH.xml`, use:
-
-`docker run --env HUNNOR_DUMP_FILE_HU=/hunnor/HunNor-XML-HN.xml --env HUNNOR_DUMP_FILE_NB=/hunnor/HunNor-XML-NH.xml --name solr-cores --publish 8983:8983 --volume $HOME/hunnor/data:/hunnor hunnordict/solr-cores`
-
-When the container is running, go to http://localhost:8983 and use data import from the menu of each core.
+`curl -X POST http://localhost:8983/solr/hunnor.nb/update --data "<commit/>" --header "Content-Type: text/xml"`
 
 # Tests
 

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dataConfig>
-	<propertyWriter type="SimplePropertiesWriter" directory="/var/opt/solr/data/hunnor.nb"/>
-	<dataSource name="hnDataSource" type="FileDataSource"/>
-	<document>
-		<entity name="hnEntity" processor="XPathEntityProcessor" dataSource="hnDataSource" url="${hunnor.dump.file.nb}"
-			forEach="/hnDict/entryGrp/entry" xsl="${solr.solr.home}/hunnor.nb/conf/xslt/import.xsl" useSolrAddSchema="true"/>
-	</document>
-</dataConfig>

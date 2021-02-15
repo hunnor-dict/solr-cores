@@ -6,8 +6,6 @@
 	<lib dir="${solr.install.dir}/contrib/analysis-extras/lib/" regex="icu4j-\d.*\.jar"/>
 	<lib dir="${solr.install.dir}/contrib/analysis-extras/lucene-libs/" regex="lucene-analyzers-icu-\d.*\.jar"/>
 	<lib dir="${solr.install.dir}/dist/" regex="solr-analysis-extras-\d.*\.jar"/>
-	<lib dir="${solr.install.dir}/dist/" regex="solr-dataimporthandler-\d.*\.jar"/>
-	<lib dir="${solr.install.dir}/dist/" regex="solr-dataimporthandler-extras-\d.*\.jar"/>
 
 	<dataDir>/var/opt/solr/data/${solr.core.name}</dataDir>
 
@@ -65,12 +63,6 @@
 		<requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048000" formdataUploadLimitInKB="2048" addHttpRequestToContext="false"/>
 		<httpCaching never304="true"/>
 	</requestDispatcher>
-
-	<requestHandler name="/dataimport" class="org.apache.solr.handler.dataimport.DataImportHandler">
-		<lst name="defaults">
-			<str name="config">import.xml</str>
-		</lst>
-	</requestHandler>
 
 	<requestHandler name="/update" class="solr.UpdateRequestHandler">
 		<lst name="defaults">
