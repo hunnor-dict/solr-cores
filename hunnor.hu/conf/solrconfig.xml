@@ -9,23 +9,7 @@
 
 	<dataDir>/var/opt/solr/data/${solr.core.name}</dataDir>
 
-	<directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}">
-		<str name="solr.hdfs.home">${solr.hdfs.home:}</str>
-		<str name="solr.hdfs.confdir">${solr.hdfs.confdir:}</str>
-		<str name="solr.hdfs.blockcache.enabled">${solr.hdfs.blockcache.enabled:true}</str>
-		<str name="solr.hdfs.blockcache.global">${solr.hdfs.blockcache.global:true}</str>
-	</directoryFactory> 
-
-	<codecFactory class="solr.SchemaCodecFactory"/>
-
 	<schemaFactory class="ClassicIndexSchemaFactory"/>
-
-	<indexConfig>
-		<lockType>${solr.lock.type:native}</lockType>
-		<infoStream>true</infoStream>
-	</indexConfig>
-
-	<jmx/>
 
 	<updateHandler class="solr.DirectUpdateHandler2">
 		<updateLog>
