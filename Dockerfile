@@ -11,12 +11,12 @@ RUN mvn verify
 
 
 
-FROM solr:8.8.1
+FROM solr:8.8.2
 
 USER root
 
 RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true\"" >> /etc/default/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=8.8.1\"" >> /etc/default/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=8.8.2\"" >> /etc/default/solr.in.sh
 
 RUN echo "SOLR_HEAP=1024m" >> /etc/default/solr.in.sh
 
