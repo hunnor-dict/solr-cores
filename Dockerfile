@@ -1,4 +1,4 @@
-FROM maven:3.6-jdk-11 as maven
+FROM maven:3.6-jdk-11 AS maven
 
 COPY tester /opt/hunnor-dict/solr-cores/tester
 COPY hunnor.hu /opt/hunnor-dict/solr-cores/hunnor.hu
@@ -11,14 +11,15 @@ RUN mvn verify
 
 
 
-FROM solr:8.11.1
+FROM solr:9.6.1
 
 USER root
 
+RUN printf "\n" >> /etc/default/solr.in.sh
 RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true\"" >> /etc/default/solr.in.sh
-RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=8.11.1\"" >> /etc/default/solr.in.sh
-
-RUN echo "SOLR_HEAP=1024m" >> /etc/default/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dlucene.match.version=9.6.1\"" >> /etc/default/solr.in.sh
+RUN echo "SOLR_OPTS=\"\$SOLR_OPTS -Dsolr.allowPaths=/var/opt/solr/data\"" >> /etc/default/solr.in.sh
+RUN echo "SOLR_HEAP=2048m" >> /etc/default/solr.in.sh
 
 RUN rm -r server/solr/*
 
@@ -29,7 +30,7 @@ COPY hunnor.hu /opt/hunnor-dict/solr-cores/hunnor.hu
 COPY hunnor.nb /opt/hunnor-dict/solr-cores/hunnor.nb
 COPY lib /opt/hunnor-dict/solr-cores/lib
 
-ENV SOLR_HOME /opt/hunnor-dict/solr-cores
+ENV SOLR_HOME=/opt/hunnor-dict/solr-cores
 
 RUN mkdir -p /var/opt/solr/data
 RUN chown -R $SOLR_USER:$SOLR_USER /var/opt/solr/data

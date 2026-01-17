@@ -4,14 +4,15 @@
 	<luceneMatchVersion>${lucene.match.version}</luceneMatchVersion>
 
 	<lib dir="${solr.install.dir}/contrib/analysis-extras/lib/" regex="icu4j-\d.*\.jar"/>
-	<lib dir="${solr.install.dir}/contrib/analysis-extras/lucene-libs/" regex="lucene-analyzers-icu-\d.*\.jar"/>
-	<lib dir="${solr.install.dir}/dist/" regex="solr-analysis-extras-\d.*\.jar"/>
+	<lib dir="${solr.install.dir}/contrib/analysis-extras/lib/" regex="lucene-analysis-icu-\d.*\.jar"/>
+	<lib dir="${solr.install.dir}/contrib/analysis-extras/lib/" regex="solr-analysis-extras-\d.*\.jar"/>
+	<lib dir="${solr.install.dir}/contrib/scripting/lib/" regex="solr-scripting-\d.*\.jar"/>
 
 	<dataDir>/var/opt/solr/data/${solr.core.name}</dataDir>
 
 	<schemaFactory class="ClassicIndexSchemaFactory"/>
 
-	<requestHandler name="/update" class="solr.UpdateRequestHandler">
+	<requestHandler name="/update" class="solr.scripting.xslt.XSLTUpdateRequestHandler">
 		<lst name="defaults">
 			<str name="tr">import.xsl</str>
 			<bool name="commit">true</bool>
