@@ -24,6 +24,7 @@
 			<str name="echoParams">explicit</str>
 			<int name="rows">10</int>
 			<str name="df">id</str>
+			<str name="hl.method">original</str>
 			<str name="spellcheck.dictionary">default</str>
 			<str name="spellcheck">on</str>
 			<str name="spellcheck.extendedResults">false</str>       
